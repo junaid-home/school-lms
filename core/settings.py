@@ -10,9 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import environ
 from pathlib import Path
 from os import path
+
+import environ
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Initialze and Read environment variables from core/.env file
 env = environ.Env()
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
 
     'users',
     'dashboard'
@@ -132,6 +138,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('GMAIL_EMAIL')
 EMAIL_HOST_PASSWORD = env('GMAIL_PASSWORD')
+
+cloudinary.config(
+    cloud_name=env('CLOUDINARY_CLOUD_NAME'),
+    api_key=env('CLOUDINARY_API_KEY'),
+    api_secret=env('CLOUDINARY_API_SECRET'),
+    secure=True
+)
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
