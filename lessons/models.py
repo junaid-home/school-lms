@@ -43,8 +43,8 @@ class Note(models.Model):
     title = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=250, null=True, blank=True)
     description = RichTextField(null=True, blank=True)
-    attachment = CloudinaryField(
-        'attachment', folder='attachments', null=True, blank=True)
+    attachment_download_link = models.CharField(
+        max_length=2000, null=True, blank=True)
     grade = models.ForeignKey(
         Grade, on_delete=models.CASCADE, null=True, blank=True)
     course = models.ForeignKey(
