@@ -14,4 +14,4 @@ class ResultAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Result, ResultAdmin)
-admin.site.register(SubjectResult)
+# admin.site.register(SubjectResult)

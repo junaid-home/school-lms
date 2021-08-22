@@ -24,7 +24,7 @@ class Result(models.Model):
         default='card-grey', choices=COLOR_CHOICES, max_length=20)
 
     def __str__(self):
-        return f'user: ({self.user.id}) {self.name}'
+        return f'user({self.user.id} - {self.user.user_name}) {self.name}'
 
 
 class SubjectResult(models.Model):
