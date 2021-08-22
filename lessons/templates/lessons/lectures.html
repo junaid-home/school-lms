@@ -1,0 +1,38 @@
+{% extends 'header.html' %}
+{% load cloudinary %}
+{% block title %}{{coursename}}{% endblock %}
+{% load embed_video_tags %}
+{% block content %}
+<div class="row card-block">
+    <div class="col-md-12">
+        <ul class="list-view m-t-15">
+        {% for video in videos %}
+        <li>
+            <a href="/{{coursename}}/lectures/{{video.id}}/">
+            <div class="card pointer list-view-media">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left" href="#">
+                        {% cloudinary video.thumbnail class="media-object card-list-img rounded" width="115" height="115" %}
+                        </div>
+                        <div class="media-body">
+                            <div class="col-xs-12">
+                                <h6 class="d-inline-block">
+                                    {{video.title}}
+                                </h6>
+                                <label class="label label-info">{{video.type}}</label>
+                            </div>
+                            <div class="f-13 text-muted m-b-15">{{request.user.grade}}</div>
+                                <p>{{video.subtitle|truncatechars:197}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </li> 
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+{% endblock content %}

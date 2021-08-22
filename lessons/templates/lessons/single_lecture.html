@@ -1,0 +1,15 @@
+{% extends 'header.html' %}
+{% block title %}{{course.name}}{% endblock %}
+{% load embed_video_tags %}
+{% block breadcrumbs %}
+{% include 'breadcrumbs.html' %}
+{% endblock %}
+{% block content %}
+<div>
+  <br />
+  <div>
+    {% video video.link '100% x 550px' %}
+    <br />
+  </div>
+</div>
+{% endblock content %}

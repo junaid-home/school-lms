@@ -4,3 +4,7 @@
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Likely future */
 }
+
+.pointer {
+  cursor: pointer !important;
+}

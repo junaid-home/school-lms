@@ -4,8 +4,14 @@
       <div class="page-header-title">
         <i class="feather icon-watch bg-c-blue"></i>
         <div class="d-inline">
-          <h5>Sample page</h5>
-          <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+          {% if video.title != None %}
+            <h5>{{video.title}}</h5>
+            <span>If you have a slow internet connection, Please wait a little before video loadup.</span>
+            {% else %}
+            <h5>{{note.title}}</h5>
+            <span>Read notes here and download Attachment</span>
+          {% endif %}
+          
         </div>
       </div>
     </div>
@@ -16,10 +22,9 @@
             <a href="index.html"><i class="feather icon-home"></i></a>
           </li>
           <li class="breadcrumb-item">
-            <a href="#!">Sample page</a>
+            <a href="/dashboard">Dashboard</a>
           </li>
         </ul>
-      </div>
     </div>
   </div>
 </div>

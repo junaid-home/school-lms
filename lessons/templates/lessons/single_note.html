@@ -1,0 +1,20 @@
+{% extends 'header.html' %}
+{% block title %}{{course.name}}{% endblock %}
+{% load embed_video_tags %}
+{% block breadcrumbs %}
+{% include 'breadcrumbs.html' %}
+{% endblock %}
+{% block content %}
+<div>
+  <div class="py-3"></div>
+  <div class="card p-4">
+   <h1>{{note.title}}</h1>
+   <p>{{note.description|safe}}</p>
+  {% if note.attachment.url != None %}
+  <form action="{{note.attachment.url}}" method="GET">
+    <button class="btn btn-primary btn-round" type="submit"><span><i class="feather bg-c-white icon-download-cloud"></i></span>  Download Attachment</button>
+  </form>
+  {% endif %}
+  </div>
+</div>
+{% endblock content %}

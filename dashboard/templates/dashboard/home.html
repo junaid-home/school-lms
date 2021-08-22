@@ -1,3 +1,21 @@
-{% extends 'header.html' %}{% block content %}
-<div>Hello Dashboard</div>
+{% extends 'header.html' %} {% load embed_video_tags %} {% block title %}
+Student Dashboard {% endblock %} {% block content %}
+<div>
+  Hello Dashboard {{courses.name}}
+  <!--
+  <br />
+  <div>
+    {% for video in courses.videos.all %} {% video video.link '100% x 550px' %}
+    {% endfor %}
+    <br />
+  </div>
+
+  {% for note in courses.notes.all %} {{note.title}} {{note.description}}
+
+  <form action="{{note.attachment.url}}" method="GET">
+    <input type="submit" value="download" />
+  </form>
+  {% endfor %}
+  -->
+</div>
 {% endblock content %}

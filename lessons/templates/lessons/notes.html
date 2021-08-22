@@ -1,0 +1,38 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}{{course.name}}{% endblock %}
+{% load embed_video_tags %}
+{% block content %}
+<div class="row card-block">
+    <div class="col-md-12">
+        <ul class="list-view m-t-15">
+        {% for note in notes %}
+        <li>
+            <a href="/{{coursename}}/notes/{{note.id}}">
+            <div class="card pointer list-view-media">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left">
+                        <img width="115" height="115" class="media-object card-list-img" src="{% static 'images/note.png' %}" alt="Note Image" />
+                        </div>
+                        <div class="media-body">
+                            <div class="col-xs-12">
+                                <h6 class="d-inline-block">
+                                    {{note.title}}
+                                </h6>
+                                <label class="label label-info">NOTE</label>
+                            </div>
+                            <div class="f-13 text-muted m-b-15">{{request.user.grade}}</div>
+                                <p>{{note.subtitle|truncatechars:197}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </li> 
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+{% endblock content %}

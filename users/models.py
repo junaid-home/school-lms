@@ -4,6 +4,21 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
+ROLE_CHOICES = (
+    ("A", "A"),
+    ("B", "B"),
+    ("C", "C"),
+)
+
+
+class Grade(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+    section = models.CharField(default='A', choices=ROLE_CHOICES, max_length=2)
+
+    def __str__(self):
+        return f'{self.name} - {self.section}'
+
+
 class CustomAccountManger(BaseUserManager):
     def create_superuser(self, email, user_name, first_name, last_name, password, **other_fields):
         other_fields.setdefault('is_staff', True)
@@ -47,6 +62,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=150)
     role = models.CharField(choices=ROLE_CHOICES,
                             max_length=15, default='Student')
+    grade = models.ForeignKey(
+        Grade, on_delete=models.SET_NULL, blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
 
     user_name = models.CharField(max_length=40, unique=True)
@@ -59,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                             default='https://res.cloudinary.com/school-lms/image/upload/v1629519702/Hnet.com-image_1_sz2sf0.jpg')
 
     USERNAME_FIELD = 'user_name'
-    REQUIRED_FIELDS = ['email', 'role', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['email', 'role', 'first_name', 'last_name', ]
 
     objects = CustomAccountManger()
 
@@ -67,4 +84,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def __str__(self):
-        return self.user_name
+        return f'{self.id}: {self.user_name}'

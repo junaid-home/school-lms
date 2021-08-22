@@ -48,9 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary',
+    'embed_video',
+    'ckeditor',
 
+    'dashboard',
     'users',
-    'dashboard'
+    'lessons',
+    'results',
 ]
 
 MIDDLEWARE = [
