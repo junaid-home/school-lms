@@ -1,0 +1,49 @@
+{% extends 'header.html' %} {% block title %} Student Attendence {% endblock %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{table_title}}</h5>
+        </div>
+        <div class="card-block">
+          <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Date</th>
+                  <th>Month</th>
+                  <th>Year</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for current in attendence_list %}
+                <tr>
+                  <td>{{current.date|date:"D"}}</td>
+                  <td>{{current.date|date:"d"}}</td>
+                  <td>{{current.date|date:"M"}}</td>
+                  <td>{{current.date|date:"Y"}}</td>
+                  <td>
+                    {% if current.status == 'absent' %}
+                    <label class="label label-danger">{{current.status|upper}}</label>
+                    {% else %}
+                    <label class="label label-success">{{current.status|upper}}</label>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

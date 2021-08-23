@@ -57,7 +57,16 @@
       type="text/css"
       href="{% static 'styles/style.css' %}"
     />
-
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'styles/font-awesome-n.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'styles/widget.css' %}"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -79,7 +88,7 @@
             {% include 'sidebar.html' %}
 
             <div class="pcoded-content">
-            {% block breadcrumbs %}{% endblock breadcrumbs %}
+              {% block breadcrumbs %}{% endblock breadcrumbs %}
               <div class="pcoded-inner-content">
                 <div class="main-body">
                   <div class="page-wrapper">

@@ -8,20 +8,21 @@ STATUS_CHOICES = (
 )
 
 COLOR_CHOICES = (
-    ('card-red', 'RED'),
-    ('card-blue', 'BLUE'),
-    ('card-green', 'GREEN'),
-    ('card-yellow', 'YELLOW'),
-    ('card-grey', 'GREY'),
+    ('red', 'RED'),
+    ('blue', 'BLUE'),
+    ('green', 'GREEN'),
+    ('yellow', 'YELLOW'),
 )
 
 
 class Result(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
+    status = models.CharField(
+        default='passed', choices=STATUS_CHOICES, max_length=20)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True)
     color = models.CharField(
-        default='card-grey', choices=COLOR_CHOICES, max_length=20)
+        default='red', choices=COLOR_CHOICES, max_length=20)
 
     def __str__(self):
         return f'user({self.user.id} - {self.user.user_name}) {self.name}'

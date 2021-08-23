@@ -46,7 +46,8 @@ def renderCourseLectureVideo(request, subject, videoId):
         video = Video.objects.get(
             grade=request.user.grade, course__name=subject, id=videoId)
 
-        context = {'video': video, 'courses': courses}
+        context = {'video': video, 'courses': courses, 'bread_title': 'Video Lecture',
+                   'bread_subtitle': "View leacture from below"}
     except:
         return redirect('404')
 
@@ -59,7 +60,8 @@ def renderCourseSingleNote(request, subject, noteId):
         note = Note.objects.get(
             grade=request.user.grade, course__name=subject, id=noteId)
 
-        context = {'note': note, 'courses': courses, 'coursename': subject}
+        context = {'note': note, 'courses': courses, 'coursename': subject, 'bread_title': 'Lecture Notes',
+                   'bread_subtitle': "View notes from below"}
     except:
         return redirect('404')
 

@@ -4,14 +4,8 @@
       <div class="page-header-title">
         <i class="feather icon-watch bg-c-blue"></i>
         <div class="d-inline">
-          {% if video.title != None %}
-            <h5>{{video.title}}</h5>
-            <span>If you have a slow internet connection, Please wait a little before video loadup.</span>
-            {% else %}
-            <h5>{{note.title}}</h5>
-            <span>Read notes here and download Attachment</span>
-          {% endif %}
-          
+          <h5>{{bread_title}}</h5>
+          <span>{{bread_subtitle}}</span>
         </div>
       </div>
     </div>
@@ -19,12 +13,13 @@
       <div class="page-header-breadcrumb">
         <ul class="breadcrumb breadcrumb-title">
           <li class="breadcrumb-item">
-            <a href="index.html"><i class="feather icon-home"></i></a>
+            <a href="{% url 'home' %}"><i class="feather icon-home"></i></a>
           </li>
           <li class="breadcrumb-item">
-            <a href="/dashboard">Dashboard</a>
+            <a href="{% url 'home' %}">Dashboard</a>
           </li>
         </ul>
+      </div>
     </div>
   </div>
 </div>

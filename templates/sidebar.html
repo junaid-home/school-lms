@@ -3,14 +3,58 @@
     <div class="pcoded-inner-navbar main-menu">
       <ul class="pcoded-item pcoded-left-item">
         {% comment %}
-        <div class="pcoded-navigation-label" menu-title-theme="theme1">
-          ACCOUNT
-        </div>
+        <div class="pcoded-navigation-label" menu-title-theme="theme1">ACCOUNT</div>
         {% endcomment %}
         <li class="">
           <a href="{% url 'home' %}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="feather icon-home"></i></span>
             <span class="pcoded-mtext">Dashboard</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{% url 'attendence' %}" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-user"></i>
+            </span>
+            <span class="pcoded-mtext">Attendence</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{% url 'timetable' %}" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-clock"></i>
+            </span>
+            <span class="pcoded-mtext">Time Table</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="navbar-light.html" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-watch"></i>
+            </span>
+            <span class="pcoded-mtext">School Timing</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="navbar-light.html" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-zap"></i>
+            </span>
+            <span class="pcoded-mtext">School Events</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="navbar-light.html" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-box"></i>
+            </span>
+            <span class="pcoded-mtext">Fee Status</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{% url 'results' %}" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-award"></i></span>
+            <span class="pcoded-mtext">Student Results</span>
           </a>
         </li>
         <li class="pcoded-hasmenu">
@@ -22,25 +66,17 @@
             {% for course in courses.all %}
             <li class="pcoded-hasmenu">
               <a href="javascript:void(0)" class="waves-effect waves-dark">
-                <span class="pcoded-micon"
-                  ><i class="feather icon-award"></i
-                ></span>
+                <span class="pcoded-micon"><i class="feather icon-award"></i></span>
                 <span class="pcoded-mtext">{{course.name}}</span>
               </a>
               <ul class="pcoded-submenu">
                 <li class="">
-                  <a
-                    href="/{{course.name}}/lectures/"
-                    class="waves-effect waves-dark"
-                  >
+                  <a href="/{{course.name}}/lectures/" class="waves-effect waves-dark">
                     <span class="pcoded-mtext">Lectures</span>
                   </a>
                 </li>
                 <li class="">
-                  <a
-                    href="/{{course.name}}/notes/"
-                    class="waves-effect waves-dark"
-                  >
+                  <a href="/{{course.name}}/notes/" class="waves-effect waves-dark">
                     <span class="pcoded-mtext">Notes</span>
                   </a>
                 </li>
@@ -49,43 +85,85 @@
             {% endfor %}
           </ul>
         </li>
-        <li class="">
-          <a href="{% url 'results' %}" class="waves-effect waves-dark">
-            <span class="pcoded-micon"><i class="feather icon-award"></i></span>
-            <span class="pcoded-mtext">Results</span>
-          </a>
-        </li>
         <li class="pcoded-hasmenu">
           <a href="javascript:void(0)" class="waves-effect waves-dark">
             <span class="pcoded-micon">
-              <i class="feather icon-layers"></i>
+              <i class="feather icon-command"></i>
             </span>
-            <span class="pcoded-mtext">Widget</span>
+            <span class="pcoded-mtext">Quiz</span>
           </a>
           <ul class="pcoded-submenu">
             <li class="">
               <a href="widget-statistic.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Statistic</span>
+                <span class="pcoded-mtext">School Timing</span>
               </a>
             </li>
             <li class="">
               <a href="widget-data.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Data</span>
+                <span class="pcoded-mtext">Time Table</span>
               </a>
             </li>
             <li class="">
               <a href="widget-chart.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Chart Widget</span>
+                <span class="pcoded-mtext">Datesheet</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="pcoded-hasmenu">
+          <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-tag"></i>
+            </span>
+            <span class="pcoded-mtext">Assignments</span>
+          </a>
+          <ul class="pcoded-submenu">
+            <li class="">
+              <a href="widget-statistic.html" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">School Timing</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="widget-data.html" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">Time Table</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="widget-chart.html" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">Datesheet</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="pcoded-hasmenu">
+          <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+              <i class="feather icon-external-link"></i>
+            </span>
+            <span class="pcoded-mtext">Leave Applications</span>
+          </a>
+          <ul class="pcoded-submenu">
+            <li class="">
+              <a href="widget-statistic.html" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">School Timing</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="widget-data.html" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">Time Table</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="widget-chart.html" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">Datesheet</span>
               </a>
             </li>
           </ul>
         </li>
         <li class="">
-          <a href="navbar-light.html" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-              <i class="feather icon-menu"></i>
-            </span>
-            <span class="pcoded-mtext">Navigation</span>
+          <a href="{% url 'logout' %}" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
+            <span class="pcoded-mtext">Logout</span>
           </a>
         </li>
       </ul>

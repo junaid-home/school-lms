@@ -1,0 +1,51 @@
+{% extends 'header.html' %} {% block title %} Student Attendence {% endblock %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{table_title}}</h5>
+        </div>
+        <div class="card-block">
+          <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Period 1</th>
+                  <th>Period 2</th>
+                  <th>Period 3</th>
+                  <th>Period 4</th>
+                  <th>Period 5</th>
+                  <th>Period 6</th>
+                  <th>Period 7</th>
+                  <th>Period 8</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for period in timetable%}
+                <tr>
+                  <td>{{period.day|upper}}</td>
+                  <td>{% if period.period_one.name is not None%}{{period.period_one.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_two.name is not None %}{{period.period_two.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_three.name is not None %}{{period.period_three.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_four.name is not None %}{{period.period_four.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_five.name is not None %}{{period.period_five.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_six.name is not None %}{{period.period_six.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_seven.name is not None %}{{period.period_seven.name}}{% else %}...{% endif %}</td>
+                  <td>{% if period.period_eight.name is not None %}{{period.period_eight.name}}{% else %}...{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
