@@ -1,0 +1,47 @@
+{% extends 'header.html' %} {% block title %} School Events {% endblock %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{table_title}}</h5>
+        </div>
+        <div class="card-block">
+          <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Year</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for fee in fee_list.all %}
+                <tr>
+                  <td>{{fee.month}}</td>
+                  <td>{{fee.year}}</td>
+                  <td>{{fee.amount}}</td>
+                  <td>
+                    {% if fee.status == 'pending' %}
+                    <label class="label label-danger">{{fee.status|upper}}</label>
+                    {% else %}
+                    <label class="label label-success">{{fee.status|upper}}</label>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,6 +1,6 @@
-from lessons.models import Course
+from lessons.models import Course, Grade
 from django.db import models
-from users.models import Grade, User
+from users.models import User
 from django.utils import timezone
 
 ATTENDENCE_STATUS = (
@@ -16,6 +16,11 @@ DAY_CHOICES = (
     ('friday', 'FRIDAY'),
     ('saturday', 'SATURDAY'),
     ('sunday', 'SUNDAY'),
+)
+
+FEE_STATUS_CHOICES = (
+    ('paid', "PAID"),
+    ('pending', 'PENDING')
 )
 
 
@@ -59,3 +64,35 @@ class Period(models.Model):
         Course, on_delete=models.CASCADE, null=True, related_name='seventh+', blank=True)
     period_eight = models.ForeignKey(
         Course, on_delete=models.CASCADE, null=True, related_name='eigth+', blank=True)
+
+
+class School_timing(models.Model):
+    start = models.TimeField()
+    end = models.TimeField()
+
+    def __str__(self):
+        return f'{self.start} - {self.end}'
+
+
+class Event(models.Model):
+    date = models.DateField(null=True, blank=True, default=timezone.now)
+    start = models.TimeField()
+    end = models.TimeField()
+    type = models.CharField(max_length=30, null=True, blank=True)
+    note = models.TextField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.type} {self.start.hour} - {self.end.hour}'
+
+
+class Fee(models.Model):
+    month = models.CharField(max_length=10, null=True, blank=True)
+    year = models.CharField(max_length=5, null=True, blank=True)
+    amount = models.IntegerField()
+    status = models.CharField(
+        max_length=30, default='pending', choices=FEE_STATUS_CHOICES)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f'user({self.user.id} - {self.user.user_name}) {self.month} {self.year}'

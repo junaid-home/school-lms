@@ -1,7 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from embed_video.fields import EmbedVideoField
-from users.models import Grade
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
 
@@ -10,6 +9,21 @@ VIDEO_PROVIDERS = (
     ('Vimeo', 'VIMEO'),
     ('SoundCloud', 'SOUND_CLOUD'),
 )
+
+SECTION_CHOICES = (
+    ("A", "A"),
+    ("B", "B"),
+    ("C", "C"),
+)
+
+
+class Grade(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+    section = models.CharField(
+        default='A', choices=SECTION_CHOICES, max_length=2)
+
+    def __str__(self):
+        return f'{self.name} - {self.section}'
 
 
 class Course(models.Model):

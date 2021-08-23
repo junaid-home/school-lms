@@ -1,0 +1,35 @@
+{% extends 'header.html' %} {% block title %} School Timing {% endblock %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{table_title}}</h5>
+        </div>
+        <div class="card-block">
+          <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
+              <thead>
+                <tr>
+                  <th>SCHOOL OPENING TIME</th>
+                  <th>SCHOOL CLOSING TIME</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{timing.start}}</td>
+                  <td>{{timing.end}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

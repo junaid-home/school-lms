@@ -2,21 +2,7 @@ from django.db import models
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-
-
-ROLE_CHOICES = (
-    ("A", "A"),
-    ("B", "B"),
-    ("C", "C"),
-)
-
-
-class Grade(models.Model):
-    name = models.CharField(max_length=10, unique=True)
-    section = models.CharField(default='A', choices=ROLE_CHOICES, max_length=2)
-
-    def __str__(self):
-        return f'{self.name} - {self.section}'
+from lessons.models import Grade
 
 
 class CustomAccountManger(BaseUserManager):
