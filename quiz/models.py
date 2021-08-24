@@ -9,6 +9,7 @@ class Quizz(models.Model):
     subtitle = models.CharField(max_length=250, blank=True, null=True)
     total_questions = models.IntegerField(default=10)
     passing_percentage = models.IntegerField(default=40)
+    time_in_minutes = models.IntegerField(default=10)
     thumbnail = CloudinaryField('thumbnail', folder='avatars',
                                 default='https://res.cloudinary.com/school-lms/image/upload/v1629519702/Hnet.com-image_1_sz2sf0.jpg')
     course = models.ForeignKey(

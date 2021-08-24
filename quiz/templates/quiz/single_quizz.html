@@ -3,16 +3,42 @@
 {% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
 <!---->
 {% block content %}
+<div class="alert alert-danger icons-alert" id="quizz-alert-box">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <i class="icofont icofont-close-line-circled"></i>
+  </button>
+  <p>Failed To Submit Quizz, Are you sure you are connected to a Network & you can access Internet!</p>
+</div>
 <div class="form-radio m-b-30">
   <div class="card">
     <div class="card-block px-4">
       <form>
         {% csrf_token %}
         <div id="questions-container"></div>
-        <button id="quizz-button" class="btn btn-primary btn-round mt-4">
+        <button type="button" class="btn btn-primary btn-round mt-4" data-toggle="modal" data-target="#confirmation-model">
           <span><i class="feather bg-c-white icon-upload-cloud"></i></span>
           Submit This Quizz
         </button>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmation-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Submit Quizz</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are your sure you want to submit your Quizz, once you press Submit Quizz there is no way for you to access This Quizz again we recommend you to please recheck your Answers!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="quizz-button" type="submit" class="btn btn-danger">Submit Quizz</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div>

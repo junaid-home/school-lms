@@ -6,72 +6,31 @@
     <title>{% block title %}{% endblock %}</title>
 
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="School CMS project build in django" />
-    <meta
-      name="keywords"
-      content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app"
-    />
+    <meta name="keywords" content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app" />
     <meta name="author" content="junaid" />
 
-    <link
-      rel="icon"
-      href="{% static 'images/favicon.ico' %}"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Quicksand:500,700"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'styles/bootstrap.min.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.min.css' %}" />
 
-    <link
-      rel="stylesheet"
-      href="{% static 'styles/waves.min.css' %}"
-      type="text/css"
-      media="all"
-    />
+    <link rel="stylesheet" href="{% static 'styles/waves.min.css' %}" type="text/css" media="all" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'styles/feather.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/feather.css' %}" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'styles/style.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'styles/font-awesome-n.min.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'styles/widget.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'styles/custom.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/font-awesome-n.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/widget.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/themify-icons.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/icofont.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/pages.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/custom.css' %}" />
   </head>
   <body>
     <div class="loader-bg">
@@ -92,9 +51,7 @@
               <div class="pcoded-inner-content">
                 <div class="main-body">
                   <div class="page-wrapper">
-                    <div class="page-body">
-                      {% block content %}{% endblock %}
-                    </div>
+                    <div class="page-body">{% block content %}{% endblock %}</div>
                   </div>
                 </div>
               </div>
@@ -105,51 +62,20 @@
       </div>
     </div>
 
-    <script
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-      src="{% static 'js/jquery.min.js' %}"
-    ></script>
-    <script
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-      src="{% static 'js/jquery-ui.min.js' %}"
-    ></script>
-    <script
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-      src="{% static 'js/popper.min.js' %}"
-    ></script>
-    <script
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-      src="{% static 'js/bootstrap.min.js' %}"
-    ></script>
+    <script type="d8424a08d31b5b8b406fded2-text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="d8424a08d31b5b8b406fded2-text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script type="d8424a08d31b5b8b406fded2-text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="d8424a08d31b5b8b406fded2-text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    <script
-      src="{% static 'js/waves.min.js' %}"
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-    ></script>
+    <script src="{% static 'js/waves.min.js' %}" type="d8424a08d31b5b8b406fded2-text/javascript"></script>
 
-    <script
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-      src="{% static 'js/jquery.slimscroll.js' %}"
-    ></script>
-    <script
-      src="{% static 'js/pcoded.min.js' %}"
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-    ></script>
-    <script
-      src="{% static 'js/vertical-layout.min.js' %}"
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-    ></script>
+    <script type="d8424a08d31b5b8b406fded2-text/javascript" src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'js/pcoded.min.js' %}" type="d8424a08d31b5b8b406fded2-text/javascript"></script>
+    <script src="{% static 'js/vertical-layout.min.js' %}" type="d8424a08d31b5b8b406fded2-text/javascript"></script>
 
-    <script
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-      src="{% static 'js/script.min.js' %}"
-    ></script>
+    <script type="d8424a08d31b5b8b406fded2-text/javascript" src="{% static 'js/script.min.js' %}"></script>
 
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
-      type="d8424a08d31b5b8b406fded2-text/javascript"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="d8424a08d31b5b8b406fded2-text/javascript"></script>
     <script type="d8424a08d31b5b8b406fded2-text/javascript">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -157,10 +83,6 @@
 
       gtag('config', 'UA-23581568-13');
     </script>
-    <script
-      src="{% static 'js/rocket-loader.min.js' %}"
-      data-cf-settings="d8424a08d31b5b8b406fded2-|49"
-      defer=""
-    ></script>
+    <script src="{% static 'js/rocket-loader.min.js' %}" data-cf-settings="d8424a08d31b5b8b406fded2-|49" defer=""></script>
   </body>
 </html>

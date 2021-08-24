@@ -28,19 +28,23 @@ def singleQuizzView(request, Id):
     return render(request, 'quiz/single_quizz.html', context)
 
 
-def get_questions_as_json(request, Id):
-    quizz = Question.objects.filter(
-        quiz__course__grade=request.user.grade, quiz__id=Id).exclude(quiz__attempted_students__id=request.user.id)
+def send_questions_as_json(request, Id):
+    try:
+        quizz = Quizz.objects.get(id=Id, course__grade=request.user.grade)
+        quizz_questions = Question.objects.filter(
+            quiz__course__grade=request.user.grade, quiz__id=Id).exclude(quiz__attempted_students__id=request.user.id)
 
-    quizz_list = list(quizz)
-    filtered_quizz_list = []
+        quizz_list = list(quizz_questions)
+        filtered_quizz_list = []
 
-    for question in quizz_list:
-        object_dict = model_to_dict(question)
-        del object_dict['answer']
-        filtered_quizz_list.append(object_dict)
+        for question in quizz_list:
+            object_dict = model_to_dict(question)
+            del object_dict['answer']
+            filtered_quizz_list.append(object_dict)
 
-    return JsonResponse(filtered_quizz_list, safe=False)
+        return JsonResponse({'questions': filtered_quizz_list, 'time': quizz.time_in_minutes}, safe=False)
+    except:
+        return JsonResponse({'message': "No Quizz Found!"})
 
 
 def recieve_quizz_data_as_json(request, Id):
