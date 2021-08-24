@@ -1,0 +1,30 @@
+{% extends 'header.html' %} {% load cloudinary %} {% block title %}My Quizz{% endblock %} {% load embed_video_tags %} {% block content %}
+<div class="row card-block">
+  <div class="col-md-12">
+    <ul class="list-view m-t-15">
+      {% for quizz in quizz_list.all %}
+      <li>
+        <div class="card list-view-media">
+          <div class="card-block">
+            <div class="media">
+              <div class="media-left" href="#">{% cloudinary quizz.thumbnail class="media-object card-list-img rounded" width="115" height="115" %}</div>
+              <div class="media-body">
+                <div class="col-xs-12">
+                  <a href="{% url 'quizz' quizz.id %}" class="mb-3 btn btn-primary font-weight-bold text-white">Start Quizz</a>
+                </div>
+                <div class="f-13 text-muted m-b-5">
+                  <h6 class="d-inline-block">{{quizz.title}}</h6>
+                  <label class="label label-danger">{{quizz.course.name}}</label>
+                </div>
+                <p>{{quizz.subtitle|truncatechars:197}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock content %}

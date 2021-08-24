@@ -1,0 +1,27 @@
+{% extends 'header.html' %} {% block title %} Student Dashboard {% endblock %} {% load static %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
+{% block content %}
+<div class="form-radio m-b-30">
+  <div class="card">
+    <div class="card-block px-4">
+      <form>
+        {% csrf_token %}
+        <div id="questions-container"></div>
+        <button id="quizz-button" class="btn btn-primary btn-round mt-4">
+          <span><i class="feather bg-c-white icon-upload-cloud"></i></span>
+          Submit This Quizz
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  document.REDIRECT_URL = "http://localhost:8000/results/";
+  document.BACKEND_GET_DATA_URL = "http://localhost:8000/quizz/{{quizz_id}}/data/";
+  document.BACKEND_SAVE_DATA_URL = "http://localhost:8000/quizz/{{quizz_id}}/data/save/";
+</script>
+<script src="{% static 'js/custom.js' %}" differ></script>
+
+{% endblock content %}

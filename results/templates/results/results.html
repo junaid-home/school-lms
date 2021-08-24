@@ -6,25 +6,33 @@
 <div class="row">
   {% for result in results %}
   <div class="col-xl-3 col-md-6">
+    {% if result.type == 'sessional' %}
     <a href="{% url 'results' result.id %}">
+      {% endif %}
       <div class="card prod-p-card card-{{result.color}}">
         <div class="card-body">
           <div class="row align-items-center m-b-30">
             <div class="col">
-              <h6 class="m-b-5 text-white">{{result.name}}</h6>
-              <h3 class="m-b-0 f-w-700 text-white">{{request.user.grade}}</h3>
+              <h6 class="m-b-5 text-white">{{result.name|truncatechars:15}}</h6>
+              {% if result.type == 'quizz' %}
+              <h3 class="m-b-0 f-w-700 text-white">Quizz</h3>
+              {% else %}
+              <h3 class="m-b-0 f-w-700 text-white">Sessional</h3>
+              {% endif %}
             </div>
             <div class="col-auto">
               <i class="fas fa-trophy text-c-{{result.color}} f-18"></i>
             </div>
           </div>
           <p class="m-b-0 text-white">
-            <span class="label m-r-10">{{result.status|upper}}</span>In This
-            Exam
+            <span class="label m-r-10">{{result.status|upper}}</span>
+            {% if result.type == 'quizz' %}Marks&nbsp;({{result.obtained_marks}}/{{result.total_marks}}){% else %}In This Exam{% endif %}
           </p>
         </div>
       </div>
+      {% if result.type == 'sessional' %}
     </a>
+    {% endif %}
   </div>
   {% endfor %}
 </div>

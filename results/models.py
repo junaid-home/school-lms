@@ -14,9 +14,18 @@ COLOR_CHOICES = (
     ('yellow', 'YELLOW'),
 )
 
+RESULT_TYPE_CHOICES = (
+    ('sessional', 'SESSIONAL'),
+    ('quizz', 'QUIZZ')
+)
+
 
 class Result(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
+    type = models.CharField(
+        default='sessional', choices=RESULT_TYPE_CHOICES, max_length=20)
+    total_marks = models.IntegerField(default=100)
+    obtained_marks = models.IntegerField(default=0)
     status = models.CharField(
         default='passed', choices=STATUS_CHOICES, max_length=20)
     user = models.ForeignKey(
@@ -25,7 +34,7 @@ class Result(models.Model):
         default='red', choices=COLOR_CHOICES, max_length=20)
 
     def __str__(self):
-        return f'user({self.user.id} - {self.user.user_name}) {self.name}'
+        return f'user({self.user.id} - {self.user.user_name}) {self.name}({self.type})'
 
 
 class SubjectResult(models.Model):
