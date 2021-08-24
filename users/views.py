@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from .models import User
 
 
-def handleLogin(request):
+def handle_login(request):
     if request.method == 'POST':
         user_name = request.POST['user_name']
         password = request.POST['password']
@@ -32,6 +32,9 @@ def handleLogin(request):
     return render(request, 'users/login.html')
 
 
-def handleLogout(request):
+def handle_logout(request):
     logout(request)
     return redirect('login')
+
+def show_user_data(request):
+    return render(request, 'users/profile.html')

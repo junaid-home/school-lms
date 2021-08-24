@@ -1,0 +1,43 @@
+{% extends 'header.html' %} {% block title %} My Leave Applications {% endblock %}
+<!---->
+{% load cloudinary %} {% block content %}
+<div class="card">
+  <div class="card-block px-5">
+    <div class="d-flex justify-content-center">{% cloudinary request.user.image class="avatar" %}</div>
+    <div class="mt-5">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" value="{{user.first_name}}" />
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" value="{{user.last_name}}" />
+      </div>
+      <div class="form-group">
+        <label>User Name</label>
+        <input type="text" class="form-control" value="{{user.user_name}}" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" value="{{user.email}}" />
+      </div>
+      <div class="form-group">
+        <label>Grade</label>
+        <input type="text" class="form-control" value="{{user.grade.name}}" />
+      </div>
+      <div class="form-group">
+        <label>Section</label>
+        <input type="text" class="form-control" value="{{user.grade.section}}" />
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <input type="text" class="form-control" value="{{user.role}}" />
+      </div>
+      <div class="form-group">
+        <label>Creation Date</label>
+        <input type="text" class="form-control" value="{{user.created_date}}" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

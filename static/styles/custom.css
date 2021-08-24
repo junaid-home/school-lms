@@ -8,3 +8,16 @@
 .pointer {
   cursor: pointer !important;
 }
+.django-ckeditor-widget {
+  width: 100% !important;
+}
+
+#cke_id_description {
+  width: 100% !important;
+}
+
+.avatar {
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 50% !important;
+}

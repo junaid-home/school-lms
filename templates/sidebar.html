@@ -54,7 +54,7 @@
         <li class="">
           <a href="{% url 'results' %}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="feather icon-award"></i></span>
-            <span class="pcoded-mtext">Student Results</span>
+            <span class="pcoded-mtext">Results</span>
           </a>
         </li>
         <li class="pcoded-hasmenu">
@@ -94,49 +94,19 @@
         <li class="pcoded-hasmenu">
           <a href="javascript:void(0)" class="waves-effect waves-dark">
             <span class="pcoded-micon">
-              <i class="feather icon-tag"></i>
-            </span>
-            <span class="pcoded-mtext">Assignments</span>
-          </a>
-          <ul class="pcoded-submenu">
-            <li class="">
-              <a href="widget-statistic.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">School Timing</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="widget-data.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Time Table</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="widget-chart.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Datesheet</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="pcoded-hasmenu">
-          <a href="javascript:void(0)" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
               <i class="feather icon-external-link"></i>
             </span>
             <span class="pcoded-mtext">Leave Applications</span>
           </a>
           <ul class="pcoded-submenu">
             <li class="">
-              <a href="widget-statistic.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">School Timing</span>
+              <a href="{% url 'new_leave' %}" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">New Application</span>
               </a>
             </li>
             <li class="">
-              <a href="widget-data.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Time Table</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="widget-chart.html" class="waves-effect waves-dark">
-                <span class="pcoded-mtext">Datesheet</span>
+              <a href="{% url 'leaves' %}" class="waves-effect waves-dark">
+                <span class="pcoded-mtext">My Applications</span>
               </a>
             </li>
           </ul>
