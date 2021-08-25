@@ -43,9 +43,12 @@ def send_questions_as_json(request, Id):
             del object_dict['answer']
             filtered_quizz_list.append(object_dict)
 
+        quizz.attempted_students.add(request.user)
+        quizz.save()
+
         return JsonResponse({'questions': filtered_quizz_list, 'time': quizz.time_in_minutes}, safe=False)
     except:
-        return JsonResponse({'message': "No Quizz Found!"})
+        return redirect('404')
 
 
 @allowed_only(roles=["Admin", 'Student'])
@@ -75,8 +78,6 @@ def recieve_quizz_data_as_json(request, Id):
                         total_marks=100, obtained_marks=score, status=status, user=request.user, color=color)
 
         result.save()
-        quizz.attempted_students.add(request.user)
-        quizz.save()
         return JsonResponse({'status': 'Ok'})
 
     return JsonResponse({"message": 'Please make a POST request for saving data'})
