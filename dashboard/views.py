@@ -20,7 +20,7 @@ def dashboard_view(request):
     return render(request, 'dashboard/home.html', context)
 
 
-def not_found_view(request):
+def not_found_view(request, exception):
     return render(request, '404.html')
 
 
