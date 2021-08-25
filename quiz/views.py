@@ -5,8 +5,10 @@ from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from .models import Quizz, Question
 from lessons.models import Course
+from users.decorators import allowed_only
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def quizzView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     quizz_list = Quizz.objects.filter(
@@ -15,6 +17,7 @@ def quizzView(request):
     return render(request, 'quiz/quizz_list.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def singleQuizzView(request, Id):
     courses = Course.objects.filter(grade=request.user.grade)
     quizz = Question.objects.filter(
@@ -28,6 +31,7 @@ def singleQuizzView(request, Id):
     return render(request, 'quiz/single_quizz.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def send_questions_as_json(request, Id):
     try:
         quizz = Quizz.objects.get(id=Id, course__grade=request.user.grade)
@@ -47,6 +51,7 @@ def send_questions_as_json(request, Id):
         return JsonResponse({'message': "No Quizz Found!"})
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def recieve_quizz_data_as_json(request, Id):
     if request.method == 'POST':
         quizz = Quizz.objects.get(id=Id, course__grade=request.user.grade)

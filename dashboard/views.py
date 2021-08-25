@@ -3,8 +3,10 @@ from django.shortcuts import render
 from lessons.models import Course
 from quiz.models import Quizz
 from results.models import Result
+from users.decorators import allowed_only
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def dashboardView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     events = Event.objects.filter().count()
@@ -22,6 +24,7 @@ def notFoundView(request):
     return render(request, '404.html')
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def attendenceView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     attendence_list = Attendence.objects.filter(user__id=request.user.id)
@@ -30,6 +33,7 @@ def attendenceView(request):
     return render(request, 'dashboard/attendence.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def timeTableView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     timetable = Period.objects.filter(timetable__grade=request.user.grade)
@@ -39,6 +43,7 @@ def timeTableView(request):
     return render(request, 'dashboard/time_table.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def schoolTimingView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     timing = School_timing.objects.get()
@@ -48,6 +53,7 @@ def schoolTimingView(request):
     return render(request, 'dashboard/timing.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def schoolEventsView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     events = Event.objects.filter()
@@ -57,6 +63,7 @@ def schoolEventsView(request):
     return render(request, 'dashboard/events.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def studentFeeView(request):
     courses = Course.objects.filter(grade=request.user.grade)
     fee_list = Fee.objects.filter(user__id=request.user.id)

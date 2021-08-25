@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from lessons.models import Course, Video, Note
+from users.decorators import allowed_only
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderCourse(request, subject, id):
     try:
         course = Course.objects.get(
@@ -14,6 +16,7 @@ def renderCourse(request, subject, id):
     return render(request, 'lessons/course.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderCourseLectures(request, subject):
     try:
         courses = Course.objects.filter(grade=request.user.grade)
@@ -27,6 +30,7 @@ def renderCourseLectures(request, subject):
     return render(request, 'lessons/lectures.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderCourseNotes(request, subject):
     try:
         courses = Course.objects.filter(grade=request.user.grade)
@@ -40,6 +44,7 @@ def renderCourseNotes(request, subject):
     return render(request, 'lessons/notes.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderCourseLectureVideo(request, subject, videoId):
     try:
         courses = Course.objects.filter(grade=request.user.grade)
@@ -54,6 +59,7 @@ def renderCourseLectureVideo(request, subject, videoId):
     return render(request, 'lessons/single_lecture.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderCourseSingleNote(request, subject, noteId):
     try:
         courses = Course.objects.filter(grade=request.user.grade)

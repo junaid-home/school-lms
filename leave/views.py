@@ -3,8 +3,10 @@ from django.contrib import messages
 from .models import LeaveApplication
 from .forms import LeaveApplicationForm
 from lessons.models import Course
+from users.decorators import allowed_only
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def my_leave_applications(request):
     courses = Course.objects.filter(grade=request.user.grade)
     applications = LeaveApplication.objects.filter(user=request.user)
@@ -15,6 +17,7 @@ def my_leave_applications(request):
     return render(request, 'leave/applications_list.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def add_new_leave_application(request):
     courses = Course.objects.filter(grade=request.user.grade)
     if request.method == 'POST':

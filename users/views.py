@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from .models import User
 from lessons.models import Course
+from .models import User
+from .decorators import unauth_only, allowed_only
 
 
+@unauth_only
 def handle_login(request):
     if request.method == 'POST':
         user_name = request.POST['user_name']
@@ -33,11 +35,13 @@ def handle_login(request):
     return render(request, 'users/login.html')
 
 
+@allowed_only(roles=["Admin", 'Student', 'Parent'])
 def handle_logout(request):
     logout(request)
     return redirect('login')
 
 
+@allowed_only(roles=["Admin", 'Student', 'Parent'])
 def show_user_data(request):
     courses = Course.objects.filter(grade=request.user.grade)
     return render(request, 'users/profile.html', {"courses": courses})

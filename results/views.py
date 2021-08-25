@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from lessons.models import Course
 from .models import Result, SubjectResult
+from users.decorators import allowed_only
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderResults(request):
     courses = Course.objects.filter(grade=request.user.grade)
     results = Result.objects.filter(user=request.user)
@@ -13,6 +15,7 @@ def renderResults(request):
     return render(request, 'results/results.html', context)
 
 
+@allowed_only(roles=["Admin", 'Student'])
 def renderSingleResult(request, Id):
     courses = Course.objects.filter(grade=request.user.grade)
     results = SubjectResult.objects.filter(
