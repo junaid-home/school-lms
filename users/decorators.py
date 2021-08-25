@@ -8,7 +8,7 @@ def unauth_only(view_func):
             if request.user.role == 'student' or request.user.role == 'admin':
                 return redirect('home')
             else:
-                return redirect('home')
+                return redirect('parent')
 
         return view_func(request, *args, **kwargs)
     return wrapper_func

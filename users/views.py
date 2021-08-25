@@ -28,7 +28,10 @@ def handle_login(request):
             login(request, user)
             if remember == 'off':
                 request.session.set_expiry(0)
-            return redirect('home')
+            if request.user.role == 'Admin' or request.user.role == 'Student':
+                return redirect('home')
+            else:
+                return redirect('parent')
         else:
             messages.error(request, 'Username OR password is incorrect')
 

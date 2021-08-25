@@ -68,3 +68,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.id}: {self.user_name}'
+
+
+class Child(models.Model):
+    parent = models.ForeignKey(
+        User, on_delete=models.SET_NULL, blank=True, null=True, related_name="parent+")
+    child = models.ForeignKey(
+        User, on_delete=models.SET_NULL, blank=True, null=True, related_name="child+")
+
+    def __str__(self):
+        return f'{self.id}: Parent({self.parent.user_name}) Child({self.child.user_name})'

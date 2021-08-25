@@ -1,0 +1,31 @@
+{% extends 'dashboard/parent-header.html' %} {% block title %}Parent Dashboard{% endblock title %}
+<!---->
+{% load cloudinary %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %}{% endblock breadcrumbs %}
+<!---->
+{% block content%}
+
+<div class="px-4 mt-4 row">
+  {% for child in childs %}
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="d-flex justify-content-center mt-4">{% cloudinary child.child.image class="avatar" %}</div>
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <h2>{{child.child.first_name}} {{child.child.last_name}}</h2>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <h6 class="mr-2">Grade: {{child.child.grade.name}}</h6>
+          <h6 class="ml-2">Section: {{child.child.grade.section}}</h6>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-2 mb-4">
+          <a href="/parent/child/{{child.child.id}}/" class="btn btn-primary btn-round">View Child Reports</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

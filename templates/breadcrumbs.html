@@ -13,10 +13,18 @@
       <div class="page-header-breadcrumb">
         <ul class="breadcrumb breadcrumb-title">
           <li class="breadcrumb-item">
+            {% if request.user.role != 'Parent' %}
             <a href="{% url 'home' %}"><i class="feather icon-home"></i></a>
+            {% else %}
+            <a href="{% url 'parent' %}"><i class="feather icon-home"></i></a>
+            {% endif %}
           </li>
           <li class="breadcrumb-item">
+            {% if request.user.role != 'Parent' %}
             <a href="{% url 'home' %}">Dashboard</a>
+            {% else %}
+            <a href="{% url 'parent' %}">Dashboard</a>
+            {% endif %}
           </li>
         </ul>
       </div>

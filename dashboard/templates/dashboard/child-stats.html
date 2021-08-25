@@ -1,0 +1,185 @@
+{% extends 'dashboard/parent-header.html' %}
+<!---->
+ {% block title %}Parent Dashboard{% endblock title %}
+ <!---->
+{% block content %}
+<div class="px-4  pt-4">
+{% for result in sessional_results %}
+<div class="col-xl-3 col-md-6">
+<div class="card prod-p-card card-blue">
+<div class="card-body">
+<a href="/child/result/{{result.id}}/{{child_grade}}">
+<div class="row align-items-center m-b-30">
+<div class="col">
+<h6 class="m-b-5 text-white">{{result.name}}</h6>
+<h3 class="m-b-0 f-w-700 text-white">{{result.type|capfirst}}</h3>
+</div>
+<div class="col-auto">
+<i class="fas fa-calendar text-c-blue f-18"></i>
+</div>
+</div>
+<p class="m-b-0 text-white"><span class="label label-primary m-r-10">{{result.status|upper}}</span>In This Exam</p>
+</a>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+<div class="px-5">
+    <div class="row">
+    <div class='w-100'>
+    <div class="col-md-12">
+    <div class="card new-cust-card">
+    <div class="card-header">
+    <h5>QUizz Result</h5>
+    <div class="card-header-right">
+    <ul class="list-unstyled card-option">
+    <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+    <li><i class="feather icon-maximize full-card"></i></li>
+    <li><i class="feather icon-minus minimize-card"></i></li>
+    <li><i class="feather icon-refresh-cw reload-card"></i></li>
+    <li><i class="feather icon-trash close-card"></i></li>
+    <li><i class="feather icon-chevron-left open-card-option"></i></li>
+    </ul>
+    </div>
+    </div>
+    <div class="card-block">
+    <table id="simpletable" class="table table-striped table-bordered nowrap">
+        <thead>
+            <th>Obtained Marks</th>
+            <th>Total Marks</th>
+            <th>Percentage</th>
+            <th>Student Passing Status</th>
+        </thead>
+        <tbody>
+            {% for result in quizz_results %}
+            <tr>
+                <td>{{result.obtained_marks}}</td>
+                <td>{{result.total_marks}}</td>
+                <td>{% widthratio result.obtained_marks result.total_marks 100%}%</td>
+                <td>
+                {% if result.status == 'failed' %}
+                <label class="label label-danger">{{result.status|upper}}</label>
+                {% else %}
+                <label class="label label-success">{{result.status|upper}}</label>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+<div class="px-5">
+    <div class="row">
+    <div class='w-100'>
+    <div class="col-md-12">
+    <div class="card new-cust-card">
+    <div class="card-header">
+    <h5>Monthly Fee</h5>
+    <div class="card-header-right">
+    <ul class="list-unstyled card-option">
+    <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+    <li><i class="feather icon-maximize full-card"></i></li>
+    <li><i class="feather icon-minus minimize-card"></i></li>
+    <li><i class="feather icon-refresh-cw reload-card"></i></li>
+    <li><i class="feather icon-trash close-card"></i></li>
+    <li><i class="feather icon-chevron-left open-card-option"></i></li>
+    </ul>
+    </div>
+    </div>
+    <div class="card-block">
+    <table id="simpletable" class="table table-striped table-bordered nowrap">
+        <thead>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            {% for fee in fee_list.all %}
+            <tr>
+                <td>{{fee.month}}</td>
+                <td>{{fee.year}}</td>
+                <td>{{fee.amount}}</td>
+                <td>
+                {% if fee.status == 'pending' %}
+                <label class="label label-danger">{{fee.status|upper}}</label>
+                {% else %}
+                <label class="label label-success">{{fee.status|upper}}</label>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div class="px-5">
+    <div class="row">
+    <div class='w-100'>
+    <div class="col-md-12">
+    <div class="card new-cust-card">
+    <div class="card-header">
+    <h5>Weekly Attendence</h5>
+    <div class="card-header-right">
+    <ul class="list-unstyled card-option">
+    <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+    <li><i class="feather icon-maximize full-card"></i></li>
+    <li><i class="feather icon-minus minimize-card"></i></li>
+    <li><i class="feather icon-refresh-cw reload-card"></i></li>
+    <li><i class="feather icon-trash close-card"></i></li>
+    <li><i class="feather icon-chevron-left open-card-option"></i></li>
+    </ul>
+    </div>
+    </div>
+    <div class="card-block">
+    <table id="simpletable" class="table table-striped table-bordered nowrap">
+        <thead>
+            <th>Day</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            {% for current in attendence_list.all %}
+            <tr>
+                <td>{{current.date|date:"D"}}</td>
+                <td>{{current.date|date:"d"}}</td>
+                <td>{{current.date|date:"M"}}</td>
+                <td>{{current.date|date:"Y"}}</td>
+                <td>
+                {% if current.status == 'absent' %}
+                <label class="label label-danger">{{current.status|upper}}</label>
+                {% else %}
+                <label class="label label-success">{{current.status|upper}}</label>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+{% endblock content %}

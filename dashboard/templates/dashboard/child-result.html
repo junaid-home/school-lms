@@ -1,0 +1,50 @@
+{% extends 'dashboard/parent-header.html' %} {% block title %}Child Result{% endblock %}
+<!---->
+{% load static %}
+<!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
+{% block content %}
+  <div class="row px-5 mt-5">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{table_title}}</h5>
+        </div>
+        <div class="card-block">
+          <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Obtained Marks</th>
+                  <th>Total Marks</th>
+                  <th>Percentage</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for current in result.all %}
+                <tr>
+                  <td>{{current.course.name}}</td>
+                  <td>{{current.obtained_marks}}</td>
+                  <td>{{current.total_marks}}</td>
+                  <td>{% widthratio current.obtained_marks current.total_marks 100%}%</td>
+                  <td>
+                    {% if current.status == 'failed' %}
+                    <label class="label label-danger">{{current.status|upper}}</label>
+                    {% else %}
+                    <label class="label label-success">{{current.status|upper}}</label>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

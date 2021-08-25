@@ -1,8 +1,10 @@
+from django.db.models import Q
 from dashboard.models import Attendence, Event, Fee, Period, School_timing
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from lessons.models import Course
 from quiz.models import Quizz
-from results.models import Result
+from results.models import Result, SubjectResult
+from users.models import Child, User
 from users.decorators import allowed_only
 
 
@@ -20,7 +22,11 @@ def dashboard_view(request):
     return render(request, 'dashboard/home.html', context)
 
 
-def not_found_view(request, exception):
+def handler404(request, exception):
+    return render(request, '404.html')
+
+
+def not_found_view(request):
     return render(request, '404.html')
 
 
@@ -66,3 +72,42 @@ def student_fee_view(request):
                'fee_list': fee_list, 'bread_title': "Fee Status", 'bread_icon': 'box', 'bread_subtitle': "Please submit all your dues in time."}
 
     return render(request, 'dashboard/fees.html', context)
+
+
+@allowed_only(roles=['Parent'])
+def parent_dashboard(request):
+    childs = Child.objects.filter(parent=request.user)
+    context = {'childs': childs, 'bread_title': "Dashboard", 'bread_icon': 'home',
+               'bread_subtitle': "Welcome to your dashboard!"}
+    return render(request, 'dashboard/parent.html', context)
+
+
+@allowed_only(roles=['Parent'])
+def child_stats(request, childId):
+    _child = Child.objects.filter(child=childId, parent=request.user)
+    if len(_child) == 0:
+        return redirect('404')
+    child = _child.all()[0].child
+    quizz_results = Result.objects.filter(user__id=child.id, type='quizz')[0:6]
+    sessional_results = Result.objects.filter(
+        user__id=child.id, type='sessional')[0:3]
+    attendence_list = Attendence.objects.filter(
+        user__id=child.id)[0:6]
+    fee_list = Fee.objects.filter(user__id=child.id)[0:6]
+
+    context = {'fee_list': fee_list, 'attendence_list': attendence_list, 'child_grade': child.grade.name, 'sessional_results': sessional_results, 'quizz_results': quizz_results, 'bread_title': "Dashboard", 'bread_icon': 'home',
+               'bread_subtitle': "Welcome to your dashboard!"}
+    return render(request, 'dashboard/child-stats.html', context)
+
+
+@allowed_only(roles=['Parent'])
+def child_result(request, resultId, childGrade):
+    try:
+        result = SubjectResult.objects.filter(
+            result__id=resultId, course__grade__name=childGrade)
+        context = {'table_title': "Child Progress", 'result': result, 'bread_title': "Child Result", 'bread_icon': 'award',
+                   'bread_subtitle': "View Your Child Progress"}
+
+        return render(request, 'dashboard/child-result.html', context)
+    except:
+        return redirect('404')
