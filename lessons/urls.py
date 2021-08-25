@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import renderCourseLectures, renderCourseNotes, renderCourseLectureVideo, renderCourseSingleNote
+from .views import course_lecture_video_view, course_lectures_view, course_notes_article_view, course_notes_view, courses_view
 
 urlpatterns = [
-    path('<str:subject>/lectures/', renderCourseLectures, name='lectures'),
+    path('courses/', courses_view, name='courses'),
+    path('<str:subject>/lectures/', course_lectures_view, name='lectures'),
     path('<str:subject>/lectures/<int:videoId>/',
-         renderCourseLectureVideo, name='lecture'),
-    path('<str:subject>/notes/', renderCourseNotes, name='notes'),
+         course_lecture_video_view, name='lecture'),
+    path('<str:subject>/notes/', course_notes_view, name='notes'),
     path('<str:subject>/notes/<int:noteId>/',
-         renderCourseSingleNote, name='note'),
+         course_notes_article_view, name='note'),
 ]

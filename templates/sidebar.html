@@ -54,33 +54,11 @@
             <span class="pcoded-mtext">Results</span>
           </a>
         </li>
-        <li class="pcoded-hasmenu">
-          <a href="javascript:void(0)" class="waves-effect waves-dark">
+        <li class="">
+          <a href="{% url 'courses' %}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="feather icon-book"></i></span>
             <span class="pcoded-mtext">Courses</span>
           </a>
-          <ul class="pcoded-submenu">
-            {% for course in courses.all %}
-            <li class="pcoded-hasmenu">
-              <a href="javascript:void(0)" class="waves-effect waves-dark">
-                <span class="pcoded-micon"><i class="feather icon-award"></i></span>
-                <span class="pcoded-mtext">{{course.name}}</span>
-              </a>
-              <ul class="pcoded-submenu">
-                <li class="">
-                  <a href="/{{course.name}}/lectures/" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Lectures</span>
-                  </a>
-                </li>
-                <li class="">
-                  <a href="/{{course.name}}/notes/" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Notes</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            {% endfor %}
-          </ul>
         </li>
         <li class="">
           <a href="{% url 'quizz' %}" class="waves-effect waves-dark">

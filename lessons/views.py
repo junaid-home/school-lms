@@ -3,27 +3,23 @@ from lessons.models import Course, Video, Note
 from users.decorators import allowed_only
 
 
-@allowed_only(roles=["Admin", 'Student'])
-def renderCourse(request, subject, id):
-    try:
-        course = Course.objects.get(
-            grade=request.user.grade, name=subject, id=id)
-        courses = Course.objects.filter(grade=request.user.grade)
-    except:
-        return redirect('404')
-    context = {'course': course, 'courses': courses}
+@allowed_only(roles=['Admin', 'Student'])
+def courses_view(request):
+    courses = Course.objects.filter(grade=request.user.grade)
 
-    return render(request, 'lessons/course.html', context)
+    context = {'courses': courses, 'bread_title': 'My Courses',
+               'bread_subtitle': "Here are all of your courses", 'bread_icon': 'book'}
+    return render(request, 'lessons/courses.html', context)
 
 
 @allowed_only(roles=["Admin", 'Student'])
-def renderCourseLectures(request, subject):
+def course_lectures_view(request, subject):
     try:
-        courses = Course.objects.filter(grade=request.user.grade)
+
         videos = Video.objects.filter(
             grade=request.user.grade, course__name=subject)
 
-        context = {'videos': videos, 'courses': courses, 'coursename': subject}
+        context = {'videos': videos, 'coursename': subject}
     except:
         return redirect('404')
 
@@ -31,13 +27,13 @@ def renderCourseLectures(request, subject):
 
 
 @allowed_only(roles=["Admin", 'Student'])
-def renderCourseNotes(request, subject):
+def course_notes_view(request, subject):
     try:
-        courses = Course.objects.filter(grade=request.user.grade)
+
         notes = Note.objects.filter(
             grade=request.user.grade, course__name=subject)
 
-        context = {'notes': notes, 'courses': courses, 'coursename': subject}
+        context = {'notes': notes, 'coursename': subject}
     except:
         return redirect('404')
 
@@ -45,13 +41,13 @@ def renderCourseNotes(request, subject):
 
 
 @allowed_only(roles=["Admin", 'Student'])
-def renderCourseLectureVideo(request, subject, videoId):
+def course_lecture_video_view(request, subject, videoId):
     try:
-        courses = Course.objects.filter(grade=request.user.grade)
+
         video = Video.objects.get(
             grade=request.user.grade, course__name=subject, id=videoId)
 
-        context = {'video': video, 'courses': courses, 'bread_title': 'Video Lecture',
+        context = {'video': video, 'bread_title': 'Video Lecture',
                    'bread_subtitle': "View leacture from below", 'bread_icon': 'book'}
     except:
         return redirect('404')
@@ -60,13 +56,13 @@ def renderCourseLectureVideo(request, subject, videoId):
 
 
 @allowed_only(roles=["Admin", 'Student'])
-def renderCourseSingleNote(request, subject, noteId):
+def course_notes_article_view(request, subject, noteId):
     try:
-        courses = Course.objects.filter(grade=request.user.grade)
+
         note = Note.objects.get(
             grade=request.user.grade, course__name=subject, id=noteId)
 
-        context = {'note': note, 'courses': courses, 'coursename': subject, 'bread_title': 'Lecture Notes',
+        context = {'note': note, 'coursename': subject, 'bread_title': 'Lecture Notes',
                    'bread_subtitle': "View notes from below", 'bread_icon': 'book'}
     except:
         return redirect('404')

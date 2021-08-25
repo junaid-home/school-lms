@@ -1,7 +1,7 @@
 from django.urls import path
-from results.views import renderResults, renderSingleResult
+from results.views import results_view, single_result_view
 
 urlpatterns = [
-    path('results/', renderResults, name='results'),
-    path('results/<int:Id>/', renderSingleResult, name='results')
+    path('results/', results_view, name='results'),
+    path('results/<int:Id>/', single_result_view, name='results')
 ]

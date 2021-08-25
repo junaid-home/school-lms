@@ -4,25 +4,22 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from .models import Quizz, Question
-from lessons.models import Course
 from users.decorators import allowed_only
 
 
 @allowed_only(roles=["Admin", 'Student'])
-def quizzView(request):
-    courses = Course.objects.filter(grade=request.user.grade)
+def quizz_view(request):
     quizz_list = Quizz.objects.filter(
         course__grade=request.user.grade).exclude(attempted_students__id=request.user.id)
-    context = {'quizz_list': quizz_list, 'courses': courses}
+    context = {'quizz_list': quizz_list}
     return render(request, 'quiz/quizz_list.html', context)
 
 
 @allowed_only(roles=["Admin", 'Student'])
-def singleQuizzView(request, Id):
-    courses = Course.objects.filter(grade=request.user.grade)
+def single_quizz_view(request, Id):
     quizz = Question.objects.filter(
         quiz__course__grade=request.user.grade, quiz__id=Id).exclude(quiz__attempted_students__id=request.user.id)
-    context = {'courses': courses, 'quizz_id': Id, 'bread_title': 'Quiz is Started!', 'bread_icon': 'command',
+    context = {'quizz_id': Id, 'bread_title': 'Quiz is Started!', 'bread_icon': 'command',
                'bread_subtitle': "Please check all of your answers before submitting once you submitted there is no way of going back"}
 
     if len(quizz) == 0:

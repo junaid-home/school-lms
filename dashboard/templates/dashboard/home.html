@@ -8,6 +8,7 @@
 <div class="col-xl-3 col-md-6">
 <div class="card prod-p-card card-red">
 <div class="card-body">
+<a href="{% url 'results' %}">
 <div class="row align-items-center m-b-30">
 <div class="col">
 <h6 class="m-b-5 text-white">Total Results</h6>
@@ -19,11 +20,14 @@
 </div>
 <p class="m-b-0 text-white"><span class="label label-danger m-r-10">RESULT</span>View All</p>
 </div>
+</a>
 </div>
 </div>
+
 <div class="col-xl-3 col-md-6">
 <div class="card prod-p-card card-blue">
 <div class="card-body">
+<a href="{% url 'events' %}">
 <div class="row align-items-center m-b-30">
 <div class="col">
 <h6 class="m-b-5 text-white">Total Events</h6>
@@ -34,12 +38,15 @@
 </div>
 </div>
 <p class="m-b-0 text-white"><span class="label label-primary m-r-10">EVENT</span>View All</p>
+</a>
 </div>
 </div>
 </div>
+
 <div class="col-xl-3 col-md-6">
 <div class="card prod-p-card card-green">
 <div class="card-body">
+<a href="{% url 'quizz' %}">
 <div class="row align-items-center m-b-30">
 <div class="col">
 <h6 class="m-b-5 text-white">Total Quizz</h6>
@@ -50,22 +57,26 @@
 </div>
 </div>
 <p class="m-b-0 text-white"><span class="label label-success m-r-10">QUIZZ</span>View All</p>
+</a>
 </div>
 </div>
 </div>
+
 <div class="col-xl-3 col-md-6">
 <div class="card prod-p-card card-yellow">
 <div class="card-body">
+<a href="{% url 'courses' %}">
 <div class="row align-items-center m-b-30">
 <div class="col">
 <h6 class="m-b-5 text-white">Total Courses</h6>
-<h3 class="m-b-0 f-w-700 text-white">&nbsp;{{courses|length}}</h3>
+<h3 class="m-b-0 f-w-700 text-white">&nbsp;{{courses}}</h3>
 </div>
 <div class="col-auto">
 <i class="fas fa-book text-c-yellow f-18"></i>
 </div>
 </div>
 <p class="m-b-0 text-white"><span class="label label-warning m-r-10">COURSE</span>View All</p>
+</a>
 </div>
 </div>
 </div>
