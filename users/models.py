@@ -66,8 +66,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomAccountManger()
 
-    def get_email_field_name(self):
-        return self.email
-
     def __str__(self):
         return f'{self.id}: {self.user_name}'

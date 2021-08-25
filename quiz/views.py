@@ -19,7 +19,7 @@ def singleQuizzView(request, Id):
     courses = Course.objects.filter(grade=request.user.grade)
     quizz = Question.objects.filter(
         quiz__course__grade=request.user.grade, quiz__id=Id).exclude(quiz__attempted_students__id=request.user.id)
-    context = {'courses': courses, 'quizz_id': Id, 'bread_title': 'Quiz is Started!',
+    context = {'courses': courses, 'quizz_id': Id, 'bread_title': 'Quiz is Started!', 'bread_icon': 'command',
                'bread_subtitle': "Please check all of your answers before submitting once you submitted there is no way of going back"}
 
     if len(quizz) == 0:

@@ -40,7 +40,7 @@ class Video(models.Model):
     title = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=250, null=True, blank=True)
     link = EmbedVideoField()
-    thumbnail = CloudinaryField('thumbnail', folder='avatars',
+    thumbnail = CloudinaryField('thumbnail', folder='thumbnails',
                                 default='https://res.cloudinary.com/school-lms/image/upload/v1629519702/Hnet.com-image_1_sz2sf0.jpg')
     type = models.CharField(
         default='Youtube', choices=VIDEO_PROVIDERS, max_length=20)

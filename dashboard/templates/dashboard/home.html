@@ -1,5 +1,172 @@
 {% extends 'header.html' %} {% block title %} Student Dashboard {% endblock %}
 <!---->
+{% block breadcrumbs %} {% include 'breadcrumbs.html' %} {% endblock %}
+<!---->
 {% block content %}
-<div>Hello Dashboard</div>
+<div class="row">
+
+<div class="col-xl-3 col-md-6">
+<div class="card prod-p-card card-red">
+<div class="card-body">
+<div class="row align-items-center m-b-30">
+<div class="col">
+<h6 class="m-b-5 text-white">Total Results</h6>
+<h3 class="m-b-0 f-w-700 text-white">&nbsp;{{results}}</h3>
+</div>
+<div class="col-auto">
+<i class="fas fa-trophy text-c-red f-18"></i>
+</div>
+</div>
+<p class="m-b-0 text-white"><span class="label label-danger m-r-10">RESULT</span>View All</p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-md-6">
+<div class="card prod-p-card card-blue">
+<div class="card-body">
+<div class="row align-items-center m-b-30">
+<div class="col">
+<h6 class="m-b-5 text-white">Total Events</h6>
+<h3 class="m-b-0 f-w-700 text-white">&nbsp;{{events}}</h3>
+</div>
+<div class="col-auto">
+<i class="fas fa-calendar text-c-blue f-18"></i>
+</div>
+</div>
+<p class="m-b-0 text-white"><span class="label label-primary m-r-10">EVENT</span>View All</p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-md-6">
+<div class="card prod-p-card card-green">
+<div class="card-body">
+<div class="row align-items-center m-b-30">
+<div class="col">
+<h6 class="m-b-5 text-white">Total Quizz</h6>
+<h3 class="m-b-0 f-w-700 text-white">&nbsp;{{quizz}}</h3>
+</div>
+<div class="col-auto">
+<i class="fas fa-pencil-alt text-c-green f-18"></i>
+</div>
+</div>
+<p class="m-b-0 text-white"><span class="label label-success m-r-10">QUIZZ</span>View All</p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-md-6">
+<div class="card prod-p-card card-yellow">
+<div class="card-body">
+<div class="row align-items-center m-b-30">
+<div class="col">
+<h6 class="m-b-5 text-white">Total Courses</h6>
+<h3 class="m-b-0 f-w-700 text-white">&nbsp;{{courses|length}}</h3>
+</div>
+<div class="col-auto">
+<i class="fas fa-book text-c-yellow f-18"></i>
+</div>
+</div>
+<p class="m-b-0 text-white"><span class="label label-warning m-r-10">COURSE</span>View All</p>
+</div>
+</div>
+</div>
+
+<div class='w-100'>
+<div class="col-md-12">
+<div class="card new-cust-card">
+<div class="card-header">
+<h5>Weekly Attendence</h5>
+<div class="card-header-right">
+ <ul class="list-unstyled card-option">
+<li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+<li><i class="feather icon-maximize full-card"></i></li>
+<li><i class="feather icon-minus minimize-card"></i></li>
+<li><i class="feather icon-refresh-cw reload-card"></i></li>
+<li><i class="feather icon-trash close-card"></i></li>
+<li><i class="feather icon-chevron-left open-card-option"></i></li>
+</ul>
+</div>
+</div>
+<div class="card-block">
+<table id="simpletable" class="table table-striped table-bordered nowrap">
+    <thead>
+        <th>Day</th>
+        <th>Month</th>
+        <th>Year</th>
+        <th>Status</th>
+    </thead>
+    <tbody>
+        {% for current in attendence_list.all %}
+        <tr>
+            <td>{{current.date|date:"D"}}</td>
+            <td>{{current.date|date:"d"}}</td>
+            <td>{{current.date|date:"M"}}</td>
+            <td>{{current.date|date:"Y"}}</td>
+            <td>
+            {% if current.status == 'absent' %}
+            <label class="label label-danger">{{current.status|upper}}</label>
+            {% else %}
+            <label class="label label-success">{{current.status|upper}}</label>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class='w-100 px-2'>
+<div class="col-md-12">
+<div class="card new-cust-card">
+<div class="card-header">
+<h5>Monthly Fee</h5>
+<div class="card-header-right">
+ <ul class="list-unstyled card-option">
+<li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+<li><i class="feather icon-maximize full-card"></i></li>
+<li><i class="feather icon-minus minimize-card"></i></li>
+<li><i class="feather icon-refresh-cw reload-card"></i></li>
+<li><i class="feather icon-trash close-card"></i></li>
+<li><i class="feather icon-chevron-left open-card-option"></i></li>
+</ul>
+</div>
+</div>
+<div class="card-block">
+<table id="simpletable" class="table table-striped table-bordered nowrap">
+    <thead>
+        <th>Month</th>
+        <th>Year</th>
+        <th>Amount</th>
+        <th>Status</th>
+    </thead>
+    <tbody>
+        {% for fee in fee_list.all %}
+        <tr>
+            <td>{{fee.month}}</td>
+            <td>{{fee.year}}</td>
+            <td>{{fee.amount}}</td>
+            <td>
+            {% if fee.status == 'pending' %}
+            <label class="label label-danger">{{fee.status|upper}}</label>
+            {% else %}
+            <label class="label label-success">{{fee.status|upper}}</label>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 {% endblock content %}

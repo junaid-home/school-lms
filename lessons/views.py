@@ -47,7 +47,7 @@ def renderCourseLectureVideo(request, subject, videoId):
             grade=request.user.grade, course__name=subject, id=videoId)
 
         context = {'video': video, 'courses': courses, 'bread_title': 'Video Lecture',
-                   'bread_subtitle': "View leacture from below"}
+                   'bread_subtitle': "View leacture from below", 'bread_icon': 'book'}
     except:
         return redirect('404')
 
@@ -61,7 +61,7 @@ def renderCourseSingleNote(request, subject, noteId):
             grade=request.user.grade, course__name=subject, id=noteId)
 
         context = {'note': note, 'courses': courses, 'coursename': subject, 'bread_title': 'Lecture Notes',
-                   'bread_subtitle': "View notes from below"}
+                   'bread_subtitle': "View notes from below", 'bread_icon': 'book'}
     except:
         return redirect('404')
 
