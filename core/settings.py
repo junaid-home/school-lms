@@ -1,5 +1,5 @@
 from pathlib import Path
-from os import path
+from os import path, getenv
 from dj_database_url import parse
 
 import environ
@@ -8,9 +8,13 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+if getenv('DEBUG') == 'True':
+    environ.Env.read_env()
 # Initialze and Read environment variables from core/.env file
 env = environ.Env()
-environ.Env.read_env()
+
+DEBUG = env('DEBUG') == 'True'
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +27,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if env('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'school-lms.herokuapp.com']
 
