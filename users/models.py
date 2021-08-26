@@ -1,8 +1,11 @@
+from environ import environ
 from django.db import models
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from lessons.models import Grade
+
+env = environ.Env()
 
 
 class CustomAccountManger(BaseUserManager):
@@ -59,7 +62,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
 
     image = CloudinaryField('image', folder='avatars',
-                            default='https://res.cloudinary.com/school-lms/image/upload/v1629519702/Hnet.com-image_1_sz2sf0.jpg')
+                            default=env('DEFAULT_AVATAR'))
 
     USERNAME_FIELD = 'user_name'
     REQUIRED_FIELDS = ['email', 'role', 'first_name', 'last_name', ]

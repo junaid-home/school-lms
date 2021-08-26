@@ -1,7 +1,10 @@
+import environ
 from django.db import models
-from lessons.models import Grade, Course
+from lessons.models import Course
 from users.models import User
 from cloudinary.models import CloudinaryField
+
+env = environ.Env()
 
 
 class Quizz(models.Model):
@@ -11,7 +14,7 @@ class Quizz(models.Model):
     passing_percentage = models.IntegerField(default=40)
     time_in_minutes = models.IntegerField(default=10)
     thumbnail = CloudinaryField('thumbnail', folder='thumbnails',
-                                default='https://res.cloudinary.com/school-lms/image/upload/v1629519702/Hnet.com-image_1_sz2sf0.jpg')
+                                default=env('DEFAULT_THUMBNAIL'))
     course = models.ForeignKey(
         Course, on_delete=models.CASCADE, null=True, blank=True)
     attempted_students = models.ManyToManyField(

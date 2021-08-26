@@ -44,9 +44,9 @@
   </div>
 </div>
 <script>
-  document.REDIRECT_URL = "http://localhost:8000/results/";
-  document.BACKEND_GET_DATA_URL = "http://localhost:8000/quizz/{{quizz_id}}/data/";
-  document.BACKEND_SAVE_DATA_URL = "http://localhost:8000/quizz/{{quizz_id}}/data/save/";
+  document.REDIRECT_URL = "{{server_url}}/results/";
+  document.BACKEND_GET_DATA_URL = "{{server_url}}/quizz/{{quizz_id}}/data/";
+  document.BACKEND_SAVE_DATA_URL = "{{server_url}}/quizz/{{quizz_id}}/data/save/";
 </script>
 <script src="{% static 'js/custom.js' %}" differ></script>
 

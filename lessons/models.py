@@ -1,8 +1,11 @@
+import environ
 from django.db import models
 from cloudinary.models import CloudinaryField
 from embed_video.fields import EmbedVideoField
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
+
+env = environ.Env()
 
 VIDEO_PROVIDERS = (
     ("Youtube", 'YOUTUBE'),
@@ -41,7 +44,7 @@ class Video(models.Model):
     subtitle = models.CharField(max_length=250, null=True, blank=True)
     link = EmbedVideoField()
     thumbnail = CloudinaryField('thumbnail', folder='thumbnails',
-                                default='https://res.cloudinary.com/school-lms/image/upload/v1629519702/Hnet.com-image_1_sz2sf0.jpg')
+                                default=env('DEFAULT_THUMBNAIL'))
     type = models.CharField(
         default='Youtube', choices=VIDEO_PROVIDERS, max_length=20)
     grade = models.ForeignKey(

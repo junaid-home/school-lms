@@ -1,10 +1,13 @@
 from json import loads
+from environ import environ
 from results.models import Result
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from .models import Quizz, Question
 from users.decorators import allowed_only
+
+env = environ.Env()
 
 
 @allowed_only(roles=["Admin", 'Student'])
@@ -19,7 +22,7 @@ def quizz_view(request):
 def single_quizz_view(request, Id):
     quizz = Question.objects.filter(
         quiz__course__grade=request.user.grade, quiz__id=Id).exclude(quiz__attempted_students__id=request.user.id)
-    context = {'quizz_id': Id, 'bread_title': 'Quiz is Started!', 'bread_icon': 'command',
+    context = {'quizz_id': Id, 'server_url': env('SERVER_URL'), 'bread_title': 'Quiz is Started!', 'bread_icon': 'command',
                'bread_subtitle': "Please check all of your answers before submitting once you submitted there is no way of going back"}
 
     if len(quizz) == 0:
