@@ -1,10 +1,12 @@
 from django.db.models import Q
+from django.http.response import JsonResponse
 from dashboard.models import Attendence, Event, Fee, Period, School_timing
 from django.shortcuts import redirect, render
 from lessons.models import Course
 from quiz.models import Quizz
 from results.models import Result, SubjectResult
-from users.models import Child, User
+from users.models import Child
+from math import floor
 from users.decorators import allowed_only
 
 
@@ -111,3 +113,39 @@ def child_result(request, resultId, childGrade):
         return render(request, 'dashboard/child-result.html', context)
     except:
         return redirect('404')
+
+
+@allowed_only(roles=['Admin', 'Student'])
+def get_attendence_data_as_json(request):
+    presents = Attendence.objects.filter(
+        user__id=request.user.id, status="present").count()
+    absents = Attendence.objects.filter(
+        user__id=request.user.id, status="absent").count()
+    total = Attendence.objects.filter(user__id=request.user.id).count()
+
+    presents_percentage = floor(presents * 100 / total)
+    absents_percentage = floor(absents * 100 / total)
+
+    return JsonResponse({'data': [presents_percentage, absents_percentage]})
+
+
+@allowed_only(roles=['Admin', 'Student'])
+def get_result_data_as_json(request):
+    results = Result.objects.filter(user=request.user, type="sessional")
+    id = results.all()[0].id
+
+    results = SubjectResult.objects.filter(
+        result__id=id, course__grade=request.user.grade)
+
+    data = {'subjects': [], 'marks': []}
+
+    if len(results):
+        for result in results.all():
+            data['subjects'].append(result.course.name)
+            data['marks'].append(
+                floor(result.obtained_marks * 100 / result.total_marks))
+    else:
+        data['subjects'] = ['English', 'Urdu', "Math"]
+        data['marks'] = [100, 100, 100]
+
+    return JsonResponse({'data': data})

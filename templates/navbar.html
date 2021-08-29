@@ -1,15 +1,12 @@
 {% load static %} {% load cloudinary %}
-<nav class="navbar header-navbar pcoded-header">
+<nav header-theme="theme5" class="navbar header-navbar pcoded-header">
   <div class="navbar-wrapper">
-    <div class="navbar-logo">
+    <div class="navbar-logo theme1">
+      <a class="mobile-menu" id="mobile-collapse" href="#!">
+        <i class="feather"></i>
+      </a>
       <a href="{% url 'home' %}">
         <img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Theme-Logo" />
-      </a>
-      <a class="mobile-menu" id="mobile-collapse" href="#!">
-        <i class="feather icon-menu icon-toggle-right"></i>
-      </a>
-      <a class="mobile-options waves-effect waves-light">
-        <i class="feather icon-more-horizontal"></i>
       </a>
     </div>
     <div class="navbar-container container-fluid">
@@ -21,7 +18,7 @@
         </li>
       </ul>
       <ul class="nav-right no-select d-flex align-items-center mt-1">
-        <li class="text-info">
+        <li class="text-danger">
           <h2 id="quizz-timer" class="d-none">00:00</h2>
         </li>
         <li class="user-profile header-notification">

@@ -1,5 +1,5 @@
 from pathlib import Path
-from os import path, getenv
+from os import path
 from dj_database_url import parse
 
 import environ
@@ -8,8 +8,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-if getenv('DEBUG') == 'True':
-    environ.Env.read_env()
+environ.Env.read_env()
 # Initialze and Read environment variables from core/.env file
 env = environ.Env()
 
