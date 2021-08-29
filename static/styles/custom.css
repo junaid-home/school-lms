@@ -25,3 +25,15 @@
 .overflow-x-scroll {
   overflow-x: scroll !important;
 }
+
+.active-white:active {
+  background: #fafafa !important;
+}
+
+.active-white:hover {
+  background: #fafafa !important;
+}
+
+.active-white:focus {
+  background: #fafafa !important;
+}
